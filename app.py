@@ -147,3 +147,36 @@ st.caption(
     "Educational research only. Historical model performance "
     "does not guarantee future results. Not a trading signal."
 )
+
+# AI FOREX SCREENSHOT ANALYZER
+
+st.divider()
+
+st.title("📸 AI Forex Screenshot Analyzer")
+
+st.write(
+    "Upload a Forex chart screenshot for educational analysis."
+)
+
+uploaded_image = st.file_uploader(
+    "Upload your Forex chart",
+    type=["png", "jpg", "jpeg"]
+)
+
+if uploaded_image is not None:
+
+    from PIL import Image
+
+    chart_image = Image.open(uploaded_image)
+
+    st.image(
+        chart_image,
+        caption="Uploaded Forex Chart",
+        use_container_width=True
+    )
+
+    st.success("Screenshot uploaded successfully!")
+
+    st.info(
+        "Image analysis will be connected in the next step."
+)
