@@ -180,3 +180,60 @@ if uploaded_image is not None:
     st.info(
         "Image analysis will be connected in the next step."
 )
+
+# SIMULATED CHART ANALYSIS
+
+st.subheader("📊 Educational Chart Observations")
+
+trend = st.selectbox(
+    "What trend do you observe?",
+    ["Uptrend", "Downtrend", "Sideways"]
+)
+
+rsi = st.slider(
+    "RSI value (from your chart)",
+    0, 100, 50
+)
+
+macd = st.selectbox(
+    "What does the MACD show?",
+    ["Bullish", "Bearish", "Unclear"]
+)
+
+if st.button("Analyse Chart"):
+
+    score = 0
+
+    if trend == "Uptrend":
+        score += 1
+    elif trend == "Downtrend":
+        score -= 1
+
+    if rsi > 50:
+        score += 1
+    elif rsi < 50:
+        score -= 1
+
+    if macd == "Bullish":
+        score += 1
+    elif macd == "Bearish":
+        score -= 1
+
+    st.subheader("Analysis Result")
+
+    if score >= 2:
+        st.success("BUY - Simulated bullish conditions")
+    elif score <= -2:
+        st.error("SELL - Simulated bearish conditions")
+    else:
+        st.warning("WAIT - Conditions are mixed or unclear")
+
+    st.write("Trend:", trend)
+    st.write("RSI:", rsi)
+    st.write("MACD:", macd)
+
+    st.info(
+        "This is a basic educational simulation using "
+        "manually entered observations. It does not analyse "
+        "the screenshot or predict actual market movements."
+)
